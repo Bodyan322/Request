@@ -5,6 +5,7 @@ class HttpRequest {
     this.headers = headers;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get(url, config) {
     // code here
   }
