@@ -12,13 +12,11 @@ function generateURL(constructorURL, methodURL, parameters) {
   return url;
 }
 class HttpRequest {
-  // get request options({ baseUrl, headers })
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get(url, config) {
     const XHR = new XMLHttpRequest();
     const { headers, params, responseType = 'json', onDownloadProgress } = config;
@@ -43,12 +41,30 @@ class HttpRequest {
       };
       XHR.send();
     });
-    // write code this
   }
 
-  // eslint-disable-next-line class-methods-use-this
   post(url, config) {
-    // code here
+    const XHR = new XMLHttpRequest();
+    const { headers, params, responseType = 'json', onDownloadProgress } = config;
+    const finalUrl = generateURL(this.baseUrl, url, params);
+
+    return new Promise((resolve, reject) => {
+      XHR.open('POST', finalUrl);
+      XHR.responseType = responseType;
+
+      applyHeaders(XHR, this.headers);
+      applyHeaders(XHR, headers);
+
+      XHR.upload.onprogress = event => onDownloadProgress(event);
+
+      XHR.onreadystatechange = () => {
+        if (XHR.readyState === 4) {
+          resolve(XHR.response);
+        } else if (XHR.status !== 200) {
+          reject(XHR.status);
+        }
+      };
+    });
   }
 }
 
