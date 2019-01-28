@@ -9,15 +9,3 @@ document.getElementById('uploadForm').onsubmit = function(e) {
     body: form
   });
 };
-
-const reuest = new HttpRequest({
-  baseUrl: 'http://localhost:8000'
-});
-
-reuest.get('/ping')
-  .then(response => {
-    console.log(response);
-  })
-  .catch(e => {
-    console.log(e)
-  });
