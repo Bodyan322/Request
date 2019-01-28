@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');;
 const app = express();
 
 app.use('/form', express.static(__dirname + '/index.html'));
+app.use('/style', express.static(__dirname + '/src/style.css'));
 app.use('/progress.js', express.static(__dirname + '/progress.js'));
 app.use('/HttpRequest.js', express.static(__dirname + '/HttpRequest.js'));
 app.use('/files', express.static(__dirname + '/uploads'));
@@ -23,7 +24,7 @@ app.post('/upload', function(req, res) {
     return;
   }
 
-  console.log('req.files >>>', req.files); // eslint-disable-line
+  console.log('req.files >>>', req.files); 
 
   sampleFile = req.files.sampleFile;
 
@@ -39,5 +40,5 @@ app.post('/upload', function(req, res) {
 });
 
 app.listen(8000, function() {
-  console.log('Express server listening on port 8000'); // eslint-disable-line
+  console.log('Express server listening on port 8000'); 
 });
