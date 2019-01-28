@@ -1,0 +1,124 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+  text-align: center;
+  background-color: blanchedalmond;
+}
+.file-upload {
+  /* display: inline-block; */
+  /* display: block; */
+  margin: 10px auto;
+  position: relative;
+  overflow: hidden; 
+  width: 20%; 
+  height: 20px; 
+  background: #f15d22;
+  transition: all 0.3s;
+  border-radius: 3px;
+  padding: 8px 4px;
+  /* margin: 10px; */
+  color: #fff;
+  text-align: center;
+  }
+  .file-upload:hover {
+  background: #7aad55;
+  }
+  .file-upload input[type="file"]{
+  display: none; 
+  }
+  .file-upload label {
+
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  }
+  .file-upload span {
+  line-height: 36px; 
+  }
+  .btn1 {
+    /* height: 0; */
+    overflow: hidden;
+    /* width: 100%; */
+    background: #99c793;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+	font-family: 'Poppins', sans-serif;
+	font-size: inherit;
+  font-weight: 600;
+  
+  outline: none;
+  padding: 10px 20px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+  }
+  /* .btn1::before{
+    color: #fff;
+      content: "\f382";
+      font-family: "Font Awesome 5 Pro";
+      font-size: 100%;
+      height: 100%;
+      right: 130%;
+      line-height: 3.3;
+      position: absolute;
+      top: 0px;
+      transition: all 0.3s;
+  } */
+  .btn1:hover {
+    background-color: #49993e;
+  }
+  .btn1::before {
+    right: 75%;
+  }
+  input {
+    margin: 10px;
+  }
+  

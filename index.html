@@ -1,15 +1,28 @@
-<html>
-  <body>
-    <form id='uploadForm' 
-      encType="multipart/form-data">
-      <input type="file" name="sampleFile" />
-      <input type='submit' value='Upload!' />
-    </form>
-    <form id='downloadForm'>
-      <input type="text" name="sampleFile" />
-      <input type='submit' value='Download!' />
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FORM</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<body>
+  <form id='uploadForm' encType="multipart/form-data">
+    <div class="file-upload">
+        <label>
+    <input  class="file" type="file" name="sampleFile" />
+    <span>Выбрать файл</span>
+   </label>
+  </div>
+    <input class="btn1" type='submit' value='Upload!' />
+  </form>
+  <form id='downloadForm'>
+    <input type="text" name="sampleFile" />
+    <input class="down" type='submit' value='Download!' />
+  </form>
 </body>
-<script src="/src/HttpRequest.js" ></script>
-<script src="src/progress.js" ></script>
+  <script src="/HttpRequest.js" ></script>
+  <script src="/progress.js" ></script>
 </html>
