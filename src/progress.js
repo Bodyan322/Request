@@ -9,3 +9,18 @@ document.getElementById('uploadForm').onsubmit = function(e) {
     body: form
   });
 };
+
+// eslint-disable-next-line no-undef
+const reuest = new HttpRequest({
+  baseUrl: 'http://localhost:8000'
+});
+
+reuest.get('/ping')
+  .then(response => {
+    // eslint-disable-next-line no-console
+    console.log(response);
+  })
+  .catch(e => {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  });

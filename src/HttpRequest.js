@@ -33,7 +33,7 @@ class HttpRequest {
       XHR.onprogress = event => onDownloadProgress(event);
 
       XHR.onreadystatechange = () => {
-        if (XHR.readyState === 4) {
+        if (XHR.readyState === 4 && XHR.status === 200) {
           resolve(XHR.response);
         } else if (XHR.status !== 200) {
           reject(XHR.status);
@@ -58,7 +58,7 @@ class HttpRequest {
       XHR.upload.onprogress = event => onDownloadProgress(event);
 
       XHR.onreadystatechange = () => {
-        if (XHR.readyState === 4) {
+        if (XHR.readyState === 4 && XHR.status === 200) {
           resolve(XHR.response);
         } else if (XHR.status !== 200) {
           reject(XHR.status);
