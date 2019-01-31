@@ -45,8 +45,8 @@ class HttpRequest {
 
   post(url, config) {
     const XHR = new XMLHttpRequest();
-    const { headers, params, responseType = 'json', onDownloadProgress } = config;
-    const finalUrl = generateURL(this.baseUrl, url, params);
+    const { headers, data, responseType = 'json', onDownloadProgress } = config;
+    const finalUrl = generateURL(this.baseUrl, url);
 
     return new Promise((resolve, reject) => {
       XHR.open('POST', finalUrl);
@@ -64,6 +64,7 @@ class HttpRequest {
           reject(XHR.status);
         }
       };
+      XHR.send(data);
     });
   }
 }
