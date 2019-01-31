@@ -1,13 +1,15 @@
 const express = require('express');
-const fileUpload = require('express-fileupload');;
+const fileUpload = require('express-fileupload');
 const app = express();
+const fs = require('fs');
 
-app.use('/form', express.static(__dirname + '/index.html'));
-app.use('/style', express.static(__dirname + '/src/style.css'));
-app.use('/progress.js', express.static(__dirname + '/src/progress.js'));
-app.use('/bg', express.static(__dirname + '/img/bg.jpg'));
-app.use('/HttpRequest.js', express.static(__dirname + '/src/HttpRequest.js'));
-app.use('/files', express.static(__dirname + '/uploads'));
+app.use('/form', express.static(`${__dirname  }/index.html`));
+app.use('/style', express.static(`${__dirname  }/src/style.css`));
+app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
+app.use('/HttpRequest.js', express.static(`${__dirname  }/src/HttpRequest.js`));
+app.use('/bg', express.static(`${__dirname  }/img/bg.jpg`));
+
+app.use('/files', express.static(`${__dirname  }/uploads`));
 
 // default options
 app.use(fileUpload());
@@ -25,21 +27,29 @@ app.post('/upload', function(req, res) {
     return;
   }
 
-  console.log('req.files >>>', req.files); 
+  console.log('req.files >>>', req.files); // eslint-disable-line
 
   sampleFile = req.files.sampleFile;
 
-  uploadPath = __dirname + '/uploads/' + sampleFile.name;
+  uploadPath = `${__dirname  }/uploads/${  sampleFile.name}`;
 
   sampleFile.mv(uploadPath, function(err) {
     if (err) {
       return res.status(500).send(err);
     }
 
-    res.send('File uploaded to ' + uploadPath);
+    res.send(`File uploaded to ${  uploadPath}`);
+  });
+});
+
+app.get('/list', function(req, res) {
+  const uploadPath = `${__dirname }/uploads/`;
+  fs.readdir(uploadPath, (err, files) => {
+    const resultArr = files.filter(file => file !== '.gitkeep');
+    res.send(resultArr);
   });
 });
 
 app.listen(8000, function() {
-  console.log('Express server listening on port 8000'); 
+  console.log('Express server listening on port 8000'); // eslint-disable-line
 });
