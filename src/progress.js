@@ -74,6 +74,7 @@ function clearFilesList() {
 }
 
 function filesList() {
+  // eslint-disable-next-line no-undef
   const r = new HttpRequest({ baseUrl: 'http://localhost:8000/' });
   r.get('/list', { responseType: 'json' })
     .then(data => {
