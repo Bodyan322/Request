@@ -1,36 +1,33 @@
-function applyHeaders(XHR, headers) {
-  for (const key in headers) {
-    XHR.setRequestHeader(key, headers[key]);
-  }
-}
-function generateURL(constructorURL, methodURL, parameters) {
-  const url = new URL(methodURL, constructorURL);
-
-  for (const key in parameters) {
-    url.searchParams.set(key, parameters[key]);
-  }
-  return url;
-}
 class HttpRequest {
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
 
-  get(url, config) {
-    const XHR = new XMLHttpRequest();
-    const { headers, params, responseType = 'json', onDownloadProgress } = config;
+  static generateURL(urlString, baseURLString, parameters) {
+    const url = new URL(urlString, baseURLString);
 
-    const finalUrl = generateURL(this.baseUrl, url, params);
+    for (const key in parameters) {
+      url.searchParams.set(key, parameters[key]);
+    }
+    return url;
+  }
+
+  __request(url, method, config) {
+    const XHR = new XMLHttpRequest();
+    const { headers, onDownloadProgress, params, responseType = 'json', data } = config;
+    const finalURL = HttpRequest.generateURL(url, this.baseUrl, params);
+    const headersObj = { ...headers, ...this.headers };
 
     return new Promise((resolve, reject) => {
-      XHR.open('GET', finalUrl);
+      XHR.open(method, finalURL);
       XHR.responseType = responseType;
 
-      applyHeaders(XHR, this.headers);
-      applyHeaders(XHR, headers);
+      Object.entries(headersObj).forEach(([key, value]) => {
+        XHR.setRequestHeader(key, value);
+      });
 
-      XHR.onprogress = event => onDownloadProgress(event);
+      XHR.onprogress = onDownloadProgress;
 
       XHR.onreadystatechange = () => {
         if (XHR.readyState === 4 && XHR.status === 200) {
@@ -39,33 +36,20 @@ class HttpRequest {
           reject(XHR.status);
         }
       };
-      XHR.send();
+
+      if (data) {
+        XHR.send(data);
+      } else {
+        XHR.send();
+      }
     });
+  }
+  get(url, config) {
+    return this.__request(url, 'GET', config);
   }
 
   post(url, config) {
-    const XHR = new XMLHttpRequest();
-    const { headers, data, responseType = 'json', onDownloadProgress } = config;
-    const finalUrl = generateURL(this.baseUrl, url);
-
-    return new Promise((resolve, reject) => {
-      XHR.open('POST', finalUrl);
-      XHR.responseType = responseType;
-
-      applyHeaders(XHR, this.headers);
-      applyHeaders(XHR, headers);
-
-      XHR.upload.onprogress = event => onDownloadProgress(event);
-
-      XHR.onreadystatechange = () => {
-        if (XHR.readyState === 4 && XHR.status === 200) {
-          resolve(XHR.response);
-        } else if (XHR.status !== 200) {
-          reject(XHR.status);
-        }
-      };
-      XHR.send(data);
-    });
+    return this.__request(url, 'POST', config);
   }
 }
 
