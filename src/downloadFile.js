@@ -15,7 +15,7 @@ document.getElementById('downloadForm').onsubmit = function(e) {
   e.preventDefault();
   // eslint-disable-next-line no-undef
   const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
-  xhr.get(`/files/${e.target[0].value}`, { onDownloadProgress, responseType: 'blob' })
+  xhr.get(`/files/${e.target[0].value}`, { onDownloadProgress: onDownloadProgresss, responseType: 'blob' })
     .then(data => {
       if (data.type === 'image/jpeg') {
         showImgOnPage(data);
