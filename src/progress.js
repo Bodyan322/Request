@@ -3,8 +3,6 @@
   const progrUpload = document.querySelector('.progress-upload');
   const percentageProgressDownload = document.querySelector('title');
   const percentageProgressUpload = document.querySelector('.percentage-progress');
-  // const imgWrapper = document.querySelector('.download-img-wrap');
-
 
   function clearProgressLine(NodeElement, shownElement) {
     if (shownElement === document.querySelector('title')) {
@@ -16,7 +14,7 @@
   }
 
 
-  function onDownloadProgress(event, NodeElement, showElement) {
+  function downloadProgress(event, NodeElement, showElement) {
     const percentage = Math.round(event.loaded / event.total * 100);
     NodeElement.style.opacity = 1;
     NodeElement.style.width = `${percentage}%`;
@@ -25,12 +23,8 @@
     showElement.innerHTML = `${percentage}%`;
     setTimeout(clearProgressLine, 1500, NodeElement, showElement);
   }
-  window.onUploadProgress = event => onDownloadProgress(event, progrUpload, percentageProgressUpload);
-  window.onDownloadProgresss = event => onDownloadProgress(event, progrDownload, percentageProgressDownload);
+  window.onUploadProgress = event => downloadProgress(event, progrUpload, percentageProgressUpload);
+  window.onDownloadProgress = event => downloadProgress(event, progrDownload, percentageProgressDownload);
 }());
 
-// function showImgOnPage(data) {
-//   const imgSrc = window.URL.createObjectURL(data, { type: `${data.type}` });
-//   document.getElementById('download-img').src = imgSrc;
-// }
 
