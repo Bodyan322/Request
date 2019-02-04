@@ -7,10 +7,8 @@ app.use('/form', express.static(`${__dirname  }/index.html`));
 app.use('/style', express.static(`${__dirname  }/src/style.css`));
 app.use('/progress.js', express.static(`${__dirname  }/src/progress.js`));
 app.use('/HttpRequest.js', express.static(`${__dirname  }/src/HttpRequest.js`));
-app.use('/uploadFile.js', express.static(`${__dirname  }/src/uploadFile.js`));
-app.use('/downloadFile.js', express.static(`${__dirname  }/src/downloadFile.js`));
-app.use('/buttInputChange.js', express.static(`${__dirname  }/src/buttInputChange.js`));
-app.use('/displayIMG.js', express.static(`${__dirname  }/src/displayIMG.js`));
+app.use('/main.js', express.static(`${__dirname  }/src/main.js`));
+app.use('/util.js', express.static(`${__dirname  }/src/util.js`));
 app.use('/fileList.js', express.static(`${__dirname  }/src/fileList.js`));
 app.use('/files', express.static(`${__dirname  }/uploads`));
 
