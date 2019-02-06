@@ -9,7 +9,7 @@ const btnDownload = document.querySelector('.second');
 const uploadLabel = document.querySelector('.svg-icon span');
 const inptText = document.querySelector('.text-field');
 const imgWrapper = document.querySelector('.download-img-wrap');
-const { changeStatusBtn, changeInputFileValue } = util;
+const { changeStatusBtn } = util;
 
 document.getElementById('uploadForm').onsubmit = function(e) {
   e.preventDefault();
@@ -39,6 +39,15 @@ function downloadFile(data) {
   document.body.removeChild(fileLink);
 }
 
+function changeInputFileValue(elem, titleValue) {
+  elem.addEventListener('change', function() {
+    if (elem.value !== '') {
+      titleValue.innerHTML = elem.value.replace(/.*\\/, '');
+    } else {
+      titleValue.innerHTML = 'Choose your file';
+    }
+  });
+}
 document.getElementById('downloadForm').onsubmit = function(e) {
   e.preventDefault();
   const xhr = new HttpRequest({ baseUrl: 'http://localhost:8000' });
