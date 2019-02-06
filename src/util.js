@@ -1,9 +1,4 @@
 (function() {
-  function showImgOnPage(data) {
-    const imgSrc = window.URL.createObjectURL(data, { type: `${data.type}` });
-    document.getElementById('download-img').src = imgSrc;
-  }
-
   function downloadFile(data) {
     const downloadURL = URL.createObjectURL(data, { type: data.type });
     const fileLink = document.createElement('a');
@@ -35,7 +30,6 @@
   }
 
   window.util = {
-    showImgOnPage,
     downloadFile,
     changeInputFileValue,
     changeStatusBtn
