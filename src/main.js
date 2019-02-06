@@ -9,7 +9,7 @@ const btnDownload = document.querySelector('.second');
 const uploadLabel = document.querySelector('.svg-icon span');
 const inptText = document.querySelector('.text-field');
 const imgWrapper = document.querySelector('.download-img-wrap');
-const { downloadFile, changeStatusBtn, changeInputFileValue } = util;
+const { changeStatusBtn, changeInputFileValue } = util;
 
 document.getElementById('uploadForm').onsubmit = function(e) {
   e.preventDefault();
@@ -26,6 +26,17 @@ document.getElementById('uploadForm').onsubmit = function(e) {
 function showImgOnPage(data) {
   const imgSrc = window.URL.createObjectURL(data, { type: `${data.type}` });
   document.getElementById('download-img').src = imgSrc;
+}
+
+function downloadFile(data) {
+  const downloadURL = URL.createObjectURL(data, { type: data.type });
+  const fileLink = document.createElement('a');
+  document.body.appendChild(fileLink);
+  fileLink.style.display = 'none';
+  fileLink.href = downloadURL;
+  fileLink.download = data.type;
+  fileLink.click();
+  document.body.removeChild(fileLink);
 }
 
 document.getElementById('downloadForm').onsubmit = function(e) {

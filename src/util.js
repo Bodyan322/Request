@@ -1,14 +1,4 @@
 (function() {
-  function downloadFile(data) {
-    const downloadURL = URL.createObjectURL(data, { type: data.type });
-    const fileLink = document.createElement('a');
-    document.body.appendChild(fileLink);
-    fileLink.style.display = 'none';
-    fileLink.href = downloadURL;
-    fileLink.download = data.type;
-    fileLink.click();
-    document.body.removeChild(fileLink);
-  }
   function changeInputFileValue(elem, titleValue) {
     elem.addEventListener('change', function() {
       if (elem.value !== '') {
@@ -30,7 +20,7 @@
   }
 
   window.util = {
-    downloadFile,
+    // downloadFile,
     changeInputFileValue,
     changeStatusBtn
   };
