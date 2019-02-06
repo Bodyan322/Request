@@ -14,7 +14,7 @@ function clearFilesList() {
   });
 }
 
-function filesList() {
+function listOfUploadFiles() {
   // eslint-disable-next-line no-undef
   const req = new HttpRequest({ baseUrl: 'http://localhost:8000/' });
   req.get('/list', { responseType: 'json' })
